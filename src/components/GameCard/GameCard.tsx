@@ -16,9 +16,15 @@ interface IGameCard {
   index: number;
   data: any;
   onSelect: (index: number) => void;
+  setFavorite: (index: number) => void;
 }
 
-export const GameCard: React.FC<IGameCard> = ({ index, data, onSelect }) => {
+export const GameCard: React.FC<IGameCard> = ({
+  index,
+  data,
+  onSelect,
+  setFavorite,
+}) => {
   const { name, image, rating, activeUsers, isFavorite } = data;
 
   return (
@@ -39,7 +45,10 @@ export const GameCard: React.FC<IGameCard> = ({ index, data, onSelect }) => {
         <Button size="small" onClick={() => onSelect(index)}>
           Learn More
         </Button>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => setFavorite(index)}
+        >
           {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
       </CardActions>
