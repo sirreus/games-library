@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { IGamesStore } from "../../store/games/types";
 
 interface IGameCard {
   index: number;
@@ -25,7 +28,13 @@ export const GameCard: React.FC<IGameCard> = ({
   onSelect,
   setFavorite,
 }) => {
-  const { name, image, rating, activeUsers, isFavorite } = data;
+  const { name, image, rating, activeUsers } = data;
+
+  const favoriteGames: IGamesStore["favorites"] = useSelector(
+    (state: RootState) => state.games.favorites
+  );
+
+  const isFavorite = favoriteGames.find((game) => game.data.name === name);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -49,7 +58,11 @@ export const GameCard: React.FC<IGameCard> = ({
           aria-label="add to favorites"
           onClick={() => setFavorite(index)}
         >
-          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          {isFavorite ? (
+            <FavoriteIcon sx={{ color: "red" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </IconButton>
       </CardActions>
     </Card>

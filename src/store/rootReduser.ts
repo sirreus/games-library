@@ -1,12 +1,9 @@
-import { IApp } from "./app/types";
 import { appSlices } from "./app/slices";
-
-// export type RootState = {
-//   app: IApp;
-// };
+import { gamesSlices } from "./games/slices";
 
 const rootReducers = {
   app: appSlices.reducer,
+  games: gamesSlices.reducer,
 };
 
 export default rootReducers;

@@ -1,3 +1,5 @@
+export const GAMES = "games";
+
 export interface IGame {
   name: string;
   category: string;
@@ -7,10 +9,12 @@ export interface IGame {
 }
 
 export interface IGameData {
-  data: IGame[];
+  data: IGame;
   isFavorite: boolean;
 }
 
 export interface IGamesStore {
-  data: IGameData[];
+  allGames: IGameData[];
+  favorites: IGameData[];
+  error: string;
 }

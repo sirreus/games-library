@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  toggleMobileMenuAction,
-  toggleMobileMenu,
-} from "../../store/app/slices";
+import { toggleMobileMenu } from "../../store/app/slices";
 import { IApp } from "../../store/app/types";
 import { RootState } from "../../store";
 
@@ -24,8 +21,6 @@ export const Header: React.FC<IHeader> = ({ isMobile }) => {
   const handleDrawerOpen = () => {
     dispatch(toggleMobileMenu(!isMobileMenuOpen));
   };
-
-  console.log(isMobileMenuOpen);
 
   return (
     <AppBar

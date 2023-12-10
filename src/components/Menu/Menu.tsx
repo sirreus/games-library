@@ -41,7 +41,7 @@ export const Menu: React.FC = () => {
     <List>
       <ListItem disablePadding sx={{ cursor: "pointer" }}>
         <ListItemButton>
-          <ListItemText primary="All games" />
+          <ListItemText primary="Home" />
         </ListItemButton>
       </ListItem>
 
