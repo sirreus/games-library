@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+  toggleMobileMenuAction,
+  toggleMobileMenu,
+} from "../../store/app/slices";
+import { IApp } from "../../store/app/types";
+import { RootState } from "../../store";
 
 interface IHeader {
   isMobile: boolean;
 }
 
 export const Header: React.FC<IHeader> = ({ isMobile }) => {
-  const [open, setMobileDrawerOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
+  const isMobileMenuOpen: IApp["isMobileMenuOpen"] = useSelector(
+    (state: RootState) => state.app.isMobileMenuOpen
+  );
 
   const handleDrawerOpen = () => {
-    setMobileDrawerOpen(!open);
+    dispatch(toggleMobileMenu(!isMobileMenuOpen));
   };
+
+  console.log(isMobileMenuOpen);
+
   return (
     <AppBar
       position="fixed"
@@ -38,7 +52,10 @@ export const Header: React.FC<IHeader> = ({ isMobile }) => {
           aria-label="open drawer"
           edge="end"
           onClick={handleDrawerOpen}
-          sx={{ ...(open && { display: "none" }), marginRight: "32px" }}
+          sx={{
+            ...(isMobileMenuOpen && { display: "none" }),
+            marginRight: "32px",
+          }}
         >
           <MenuIcon />
         </IconButton>

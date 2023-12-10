@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Drawer, SwipeableDrawer, Toolbar } from "@mui/material";
 import Menu from "../Menu";
+import { useSelector } from "react-redux";
+import { IApp } from "../../store/app/types";
+import { RootState } from "../../store";
+import { useDispatch } from "react-redux";
+import { toggleMobileMenu } from "../../store/app/slices";
 
 const drawerWidth = 240;
 
@@ -10,6 +15,15 @@ interface ISidebar {
 }
 
 export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
+  const dispatch = useDispatch();
+  const isMobileMenuOpen: IApp["isMobileMenuOpen"] = useSelector(
+    (state: RootState) => state.app.isMobileMenuOpen
+  );
+
+  const handleDrawerOpen = (state: boolean) => {
+    dispatch(toggleMobileMenu(state));
+  };
+
   return !isMobile ? (
     <Drawer
       variant="permanent"
@@ -35,9 +49,9 @@ export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
   ) : (
     <SwipeableDrawer
       anchor="right"
-      open={true}
-      onClose={() => {}}
-      onOpen={() => {}}
+      open={isMobileMenuOpen}
+      onClose={() => handleDrawerOpen(false)}
+      onOpen={() => handleDrawerOpen(true)}
       sx={{
         "& .MuiPaper-root": {
           width: drawerWidth,
