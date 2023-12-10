@@ -33,7 +33,7 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ isMobile }) => {
     state: boolean;
   }) => {
     setOpen(state);
-    if (index) {
+    if (index || index === 0) {
       setShowGame(gamesData[index]);
     } else {
       setShowGame({});
@@ -92,6 +92,7 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ isMobile }) => {
           open={open}
           data={showGame}
           onClose={() => handleShowModalDialog({ state: false })}
+          isMobile={isMobile}
         />
       </div>
     </Box>

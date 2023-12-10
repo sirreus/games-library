@@ -39,18 +39,20 @@ export const GameCard: React.FC<IGameCard> = ({
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" alt={name} height="140" image={image} />
-      <CardContent>
+      <CardContent sx={{ backgroundColor: "#252b40", color: "white" }}>
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {rating || "0.0"}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {activeUsers || "0"}
-        </Typography>
+        <Typography variant="body2">{rating || "0.0"}</Typography>
+        <Typography variant="body2">{activeUsers || "0"}</Typography>
       </CardContent>
-      <CardActions sx={{ justifyContent: "space-between" }}>
+      <CardActions
+        sx={{
+          justifyContent: "space-between",
+          backgroundColor: "#252b40",
+          color: "white",
+        }}
+      >
         <Button size="small" onClick={() => onSelect(index)}>
           Learn More
         </Button>
@@ -59,9 +61,9 @@ export const GameCard: React.FC<IGameCard> = ({
           onClick={() => setFavorite(index)}
         >
           {isFavorite ? (
-            <FavoriteIcon sx={{ color: "red" }} />
+            <FavoriteIcon sx={{ color: "firebrick" }} />
           ) : (
-            <FavoriteBorderIcon />
+            <FavoriteBorderIcon sx={{ color: "firebrick" }} />
           )}
         </IconButton>
       </CardActions>
