@@ -6,7 +6,11 @@ import gamesData from "../../constants/gamesData";
 import GameCard from "../GameCard";
 import GameCardExpand from "../GameCardExpand";
 
-export const GamesLibrary: React.FC = () => {
+interface IGamesLibrary {
+  isMobile: boolean;
+}
+
+export const GamesLibrary: React.FC<IGamesLibrary> = ({ isMobile }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [showGame, setShowGame] = useState<any>({});
 
@@ -26,7 +30,7 @@ export const GamesLibrary: React.FC = () => {
   };
 
   return (
-    <Box sx={{ marginLeft: "240px" }}>
+    <Box sx={{ marginLeft: isMobile ? 0 : "240px" }}>
       <Toolbar />
       <div
         className="games-library"
@@ -35,7 +39,7 @@ export const GamesLibrary: React.FC = () => {
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
+          columns={{ xs: 4, sm: 8, md: 12, lg: 16 }}
         >
           {gamesData.map((game: any, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
