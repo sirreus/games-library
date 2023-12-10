@@ -12,10 +12,11 @@ import GameCardExpand from "../GameCardExpand";
 import { RootState } from "../../store";
 
 interface IGamesLibrary {
+  data: IGame[];
   isMobile: boolean;
 }
 
-export const GamesLibrary: React.FC<IGamesLibrary> = ({ isMobile }) => {
+export const GamesLibrary: React.FC<IGamesLibrary> = ({ data, isMobile }) => {
   const dispatch = useDispatch();
 
   const favoriteGames: IGamesStore["favorites"] = useSelector(
@@ -26,41 +27,31 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ isMobile }) => {
   const [showGame, setShowGame] = useState<any>({});
 
   const handleShowModalDialog = ({
-    index,
+    id,
     state,
   }: {
-    index?: number;
+    id?: number;
     state: boolean;
   }) => {
     setOpen(state);
-    if (index || index === 0) {
-      setShowGame(gamesData[index]);
+    if (id) {
+      const game: IGame = gamesData.find((game) => game.id === id)!;
+      setShowGame(game);
     } else {
       setShowGame({});
     }
   };
 
-  const handelSetFavorites = (index: number) => {
-    const selectedGame: IGame = {
-      name: gamesData[index].name,
-      category: gamesData[index].category,
-      rating: 0.0,
-      activeUsers: 0,
-      image: "",
-    };
+  const handelSetFavorites = (id: number) => {
+    const selectedGame: IGame = gamesData.find((game) => game.id === id)!;
 
     const isFavorite = favoriteGames.find(
-      (game) => game.data.name === selectedGame.name
+      (game) => game.name === selectedGame.name
     );
     if (isFavorite) {
       dispatch(removeFromFavorite(selectedGame.name));
     } else {
-      dispatch(
-        setFavorite({
-          data: selectedGame,
-          isFavorite: true,
-        })
-      );
+      dispatch(setFavorite(selectedGame));
     }
   };
 
@@ -76,13 +67,14 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ isMobile }) => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12, lg: 16 }}
         >
-          {gamesData.map((game: any, index) => (
+          {data.map((game: IGame, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
               <GameCard
-                index={index}
                 data={game}
-                onSelect={() => handleShowModalDialog({ index, state: true })}
-                setFavorite={() => handelSetFavorites(index)}
+                onSelect={() =>
+                  handleShowModalDialog({ id: game.id, state: true })
+                }
+                setFavorite={() => handelSetFavorites(game.id)}
               />
             </Grid>
           ))}

@@ -1,9 +1,9 @@
 import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GAMES, IGame, IGameData, IGamesStore } from "./types";
+import { GAMES, IGame, IGamesStore } from "./types";
 
 export const setFavoriteAction = createAction(
   `${GAMES}/setFavorite`,
-  (data: IGame, isFavorite: boolean) => ({ payload: { data, isFavorite } })
+  (data: IGame) => ({ payload: data })
 );
 
 export const removeFromFavoriteAction = createAction(
@@ -21,7 +21,7 @@ export const gamesSlices = createSlice({
   name: GAMES,
   initialState: gamesInitialState,
   reducers: {
-    setFavorite(state: IGamesStore, action: PayloadAction<IGameData>) {
+    setFavorite(state: IGamesStore, action: PayloadAction<IGame>) {
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
@@ -31,7 +31,7 @@ export const gamesSlices = createSlice({
       return {
         ...state,
         favorites: state.favorites.filter(
-          (game) => game.data.name !== action.payload
+          (game) => game.name !== action.payload
         ),
       };
     },

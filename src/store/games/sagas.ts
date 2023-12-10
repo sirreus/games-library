@@ -7,9 +7,9 @@ import {
   removeFromFavoriteAction,
   setError,
 } from "./slices";
-import { IGameData } from "./types";
+import { IGame } from "./types";
 
-function* setFavoriteSaga(action: PayloadAction<IGameData>) {
+function* setFavoriteSaga(action: PayloadAction<IGame>) {
   try {
     yield put(setFavorite(action.payload));
   } catch (error: any) {

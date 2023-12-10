@@ -1,22 +1,16 @@
 import React from "react";
 
-import CssBaseline from "@mui/material/CssBaseline";
-
-import Sidebar from "../../components/Sidebar";
 import GamesLibrary from "../../components/GamesLibrary";
-import Header from "../../components/Header";
-import { useMobile } from "../../hooks/useMobile";
+import gamesData from "../../constants/gamesData";
 
-export const MainPage: React.FC = () => {
-  const isMobile = useMobile();
+interface IMainPage {
+  isMobile: boolean;
+}
+
+export const MainPage: React.FC<IMainPage> = ({ isMobile }) => {
   return (
     <>
-      {/* <Container component="main" sx={{ display: "flex" }}> */}
-      <CssBaseline />
-      <Header isMobile={isMobile} />
-      <Sidebar isMobile={isMobile} />
-      <GamesLibrary isMobile={isMobile} />
-      {/* </Container> */}
+      <GamesLibrary data={gamesData} isMobile={isMobile} />
     </>
   );
 };

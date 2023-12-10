@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   List,
@@ -10,6 +11,7 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const Menu: React.FC = () => {
+  const navigate = useNavigate();
   const categories = [
     { name: "Slots" },
     { name: "Table Games", subCategories: [{ name: "Roulette" }] },
@@ -37,10 +39,16 @@ export const Menu: React.FC = () => {
     }
   };
 
+  const goToSubCategoryGamePage = (category: string, subCategory: string) => {
+    const formateCategory = category.replace(" ", "-").toLowerCase();
+    const formateSubCategory = subCategory.toLowerCase();
+    navigate(`${formateCategory}/${formateSubCategory}`);
+  };
+
   return (
     <List>
       <ListItem disablePadding sx={{ cursor: "pointer" }}>
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate("/")}>
           <ListItemText primary="Home" />
         </ListItemButton>
       </ListItem>
@@ -51,13 +59,19 @@ export const Menu: React.FC = () => {
           {isCategoriesOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
       </ListItem>
+
+      {/* GAME CATEGORIES */}
       <Collapse in={isCategoriesOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {categories.map((category, index) => (
             <React.Fragment key={index}>
               <ListItemButton
                 sx={{ pl: 4 }}
-                onClick={() => handleSubcategoriesShow(category.name)}
+                onClick={() =>
+                  category.subCategories
+                    ? handleSubcategoriesShow(category.name)
+                    : navigate(category.name.toLowerCase())
+                }
                 key={index}
               >
                 <ListItemText primary={category.name} />
@@ -72,6 +86,8 @@ export const Menu: React.FC = () => {
                   </>
                 )}
               </ListItemButton>
+
+              {/* GAME SUBCATEGORIES */}
               {category.subCategories && (
                 <Collapse
                   in={
@@ -83,7 +99,16 @@ export const Menu: React.FC = () => {
                 >
                   <List component="div" sx={{ pl: 4 }}>
                     {category.subCategories.map((subCategory, index) => (
-                      <ListItemButton sx={{ pl: 4 }} key={index}>
+                      <ListItemButton
+                        sx={{ pl: 4 }}
+                        onClick={() =>
+                          goToSubCategoryGamePage(
+                            category.name,
+                            subCategory.name
+                          )
+                        }
+                        key={index}
+                      >
                         <ListItemText primary={subCategory.name} />
                       </ListItemButton>
                     ))}
@@ -96,7 +121,7 @@ export const Menu: React.FC = () => {
       </Collapse>
 
       <ListItem disablePadding sx={{ cursor: "pointer" }}>
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate("/favorites")}>
           <ListItemText primary="Favorites" />
         </ListItemButton>
       </ListItem>
