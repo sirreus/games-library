@@ -84,7 +84,14 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
       }));
     }
 
-    dispatch(setSortedGames(data.sort(sortByFn)));
+    /**
+     * this avoid spontaneous Error
+     * Cannot assign to read only property '0' of object '[object Array]'
+     * TypeError: Cannot assign to read only property '0' of object '[object Array]'
+     */
+    const targetData = [...data];
+
+    dispatch(setSortedGames(targetData.sort(sortByFn)));
   };
 
   return (
