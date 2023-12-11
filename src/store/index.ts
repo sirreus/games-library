@@ -19,6 +19,7 @@ export const store = configureStore({
   reducer: {
     app: rootReducers.app,
     games: persistedRootGame,
+    sorting: rootReducers.sorting,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

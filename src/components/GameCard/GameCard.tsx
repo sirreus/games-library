@@ -41,7 +41,7 @@ export const GameCard: React.FC<IGameCard> = ({
   const isFavorite = favoriteGames.find((game) => game.name === name);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 184 }}>
       <CardMedia component="img" alt={name} height="140" image={image} />
       <CardContent sx={{ backgroundColor: "#252b40", color: "white" }}>
         <Typography gutterBottom variant="h5" component="div">

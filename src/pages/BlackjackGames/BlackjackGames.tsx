@@ -1,6 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../store";
+import { IGame } from "../../store/games/types";
 
 import GamesLibrary from "../../components/GamesLibrary";
+import SortingBar from "../../components/SortingBar";
+
 import gamesData from "../../constants/gamesData";
 
 interface IBlackjackGames {
@@ -11,9 +17,18 @@ export const BlackjackGames: React.FC<IBlackjackGames> = ({ isMobile }) => {
   const blackjackGames = gamesData.filter(
     (game) => game.category === "blackjack"
   );
+
+  const sortedGames: IGame[] = useSelector(
+    (state: RootState) => state.sorting.data
+  );
+
   return (
     <>
-      <GamesLibrary data={blackjackGames} isMobile={isMobile} />
+      <SortingBar data={blackjackGames} isMobile={isMobile} />
+      <GamesLibrary
+        data={sortedGames.length > 0 ? sortedGames : blackjackGames}
+        isMobile={isMobile}
+      />
     </>
   );
 };

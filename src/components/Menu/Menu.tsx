@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import {
@@ -9,10 +10,12 @@ import {
   Collapse,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { setSortedGames } from "../../store/sorting/slices";
 
 export const Menu: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const categories = [
     { name: "Slots" },
@@ -45,6 +48,13 @@ export const Menu: React.FC = () => {
     const formateCategory = category.replace(" ", "-").toLowerCase();
     const formateSubCategory = subCategory.toLowerCase();
     navigate(`${formateCategory}/${formateSubCategory}`);
+
+    dispatch(setSortedGames([]));
+  };
+
+  const goTo = (path: string) => {
+    navigate(path);
+    dispatch(setSortedGames([]));
   };
 
   return (
@@ -57,7 +67,7 @@ export const Menu: React.FC = () => {
           "&:hover": { color: "gold" },
         }}
       >
-        <ListItemButton onClick={() => navigate("/")}>
+        <ListItemButton onClick={() => goTo("/")}>
           <ListItemText primary="Home" />
         </ListItemButton>
       </ListItem>
@@ -89,7 +99,7 @@ export const Menu: React.FC = () => {
                 onClick={() =>
                   category.subCategories
                     ? handleSubcategoriesShow(category.name)
-                    : navigate(category.name.toLowerCase())
+                    : goTo(category.name.toLowerCase())
                 }
                 key={index}
               >
