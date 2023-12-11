@@ -85,7 +85,7 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
     }
 
     /**
-     * this avoid spontaneous Error
+     * this avoid spontaneous Error:
      * Cannot assign to read only property '0' of object '[object Array]'
      * TypeError: Cannot assign to read only property '0' of object '[object Array]'
      */
@@ -101,13 +101,18 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
         direction="row"
         spacing={2}
         alignItems="center"
-        sx={{ marginLeft: isMobile ? "32px !important" : "272px !important" }}
+        sx={{
+          marginLeft: isMobile ? "32px !important" : "272px !important",
+          "@media screen and (max-width: 600px)": {
+            marginLeft: "16px !important",
+          },
+        }}
       >
-        <Typography>Sort by:</Typography>
+        <Typography fontSize={18}>Sort by:</Typography>
         {SORTING_VARIANTS.map((variant: SortingBy) => (
           <Button
             onClick={() => handelSortingData(variant)}
-            sx={{ textTransform: "none" }}
+            sx={{ textTransform: "none", fontSize: "16px" }}
             startIcon={
               sorting.by === variant ? (
                 sorting.order === "asc" ? (

@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { IGame, IGamesStore } from "../../store/games/types";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
 import {
   Button,
   Card,
@@ -32,6 +34,7 @@ export const GameCard: React.FC<IGameCard> = ({
   onSelect,
   setFavorite,
 }) => {
+  const { width } = useWindowDimensions();
   const { id, name, image, rating, activeUsers } = data;
 
   const favoriteGames: IGamesStore["favorites"] = useSelector(
@@ -40,8 +43,10 @@ export const GameCard: React.FC<IGameCard> = ({
 
   const isFavorite = favoriteGames.find((game) => game.name === name);
 
+  const isLessSM = width < 480;
+
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 184 }}>
+    <Card sx={{ maxWidth: isLessSM ? "100%" : 345, minWidth: 184 }}>
       <CardMedia component="img" alt={name} height="140" image={image} />
       <CardContent sx={{ backgroundColor: "#252b40", color: "white" }}>
         <Typography gutterBottom variant="h5" component="div">

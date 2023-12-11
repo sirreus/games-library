@@ -12,6 +12,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import Rating from "./components/Rating";
 import ActiveUsers from "./components/ActiveUsers";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 interface IGameCardExpand {
   open: boolean;
@@ -26,8 +27,19 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
   onClose,
   isMobile,
 }) => {
-  // console.log(data);
+  const { width } = useWindowDimensions();
+
   const { name, image, rating, activeUsers } = data;
+
+  const isLessSM = width < 480;
+
+  const fullScreenStyles = {
+    height: "100%",
+    maxHeight: "100%",
+    width: "100%",
+    maxWidth: "100%",
+    margin: 0,
+  };
 
   return (
     <Dialog
@@ -38,6 +50,7 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
           color: "white",
           width: "fit-content",
           maxWidth: "768px",
+          ...(isLessSM && fullScreenStyles),
         },
       }}
     >
