@@ -1,5 +1,5 @@
 // import createSagaMiddleware from "@redux-saga/core";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -20,6 +20,9 @@ export const store = configureStore({
     app: rootReducers.app,
     games: persistedRootGame,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
   // middleware: [sagaMiddleware],
 });
 

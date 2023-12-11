@@ -1,5 +1,9 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { IGame, IGamesStore } from "../../store/games/types";
+
 import {
   Button,
   Card,
@@ -7,13 +11,15 @@ import {
   CardContent,
   CardMedia,
   IconButton,
+  List,
+  ListItem,
+  ListItemText,
   Typography,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { IGame, IGamesStore } from "../../store/games/types";
+import GradeIcon from "@mui/icons-material/Grade";
+import PersonIcon from "@mui/icons-material/Person";
 
 interface IGameCard {
   data: IGame;
@@ -41,9 +47,25 @@ export const GameCard: React.FC<IGameCard> = ({
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
-        <Typography variant="body2">{rating || "0.0"}</Typography>
-        <Typography variant="body2">{activeUsers || "0"}</Typography>
+
+        <List>
+          <ListItem disablePadding>
+            <GradeIcon sx={{ color: "gold" }} />
+            <ListItemText
+              primary={rating || "0.0"}
+              sx={{ marginLeft: "8px" }}
+            />
+          </ListItem>
+          <ListItem disablePadding>
+            <PersonIcon color="success" />
+            <ListItemText
+              primary={activeUsers || "0"}
+              sx={{ marginLeft: "8px" }}
+            />
+          </ListItem>
+        </List>
       </CardContent>
+
       <CardActions
         sx={{
           justifyContent: "space-between",

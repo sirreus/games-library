@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFavorite, removeFromFavorite } from "../../store/games/slices";
 import { IGame, IGamesStore } from "../../store/games/types";
 
-import { Box, Grid, Toolbar } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 import gamesData from "../../constants/gamesData";
 import GameCard from "../GameCard";
@@ -57,7 +57,6 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ data, isMobile }) => {
 
   return (
     <Box sx={{ marginLeft: isMobile ? 0 : "240px" }}>
-      <Toolbar />
       <div
         className="games-library"
         style={{ padding: "32px", width: "fit-content" }}

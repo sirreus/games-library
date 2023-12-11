@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import {
   List,
@@ -12,6 +12,8 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const Menu: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const categories = [
     { name: "Slots" },
     { name: "Table Games", subCategories: [{ name: "Roulette" }] },
@@ -47,13 +49,23 @@ export const Menu: React.FC = () => {
 
   return (
     <List>
-      <ListItem disablePadding sx={{ cursor: "pointer" }}>
+      <ListItem
+        disablePadding
+        sx={{
+          cursor: "pointer",
+          color: location.pathname === "/" ? "gold" : "white",
+          "&:hover": { color: "gold" },
+        }}
+      >
         <ListItemButton onClick={() => navigate("/")}>
           <ListItemText primary="Home" />
         </ListItemButton>
       </ListItem>
 
-      <ListItem disablePadding sx={{ cursor: "pointer" }}>
+      <ListItem
+        disablePadding
+        sx={{ cursor: "pointer", "&:hover": { color: "gold" } }}
+      >
         <ListItemButton onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
           <ListItemText primary="Game categories" />
           {isCategoriesOpen ? <ExpandLess /> : <ExpandMore />}
@@ -66,7 +78,14 @@ export const Menu: React.FC = () => {
           {categories.map((category, index) => (
             <React.Fragment key={index}>
               <ListItemButton
-                sx={{ pl: 4 }}
+                sx={{
+                  pl: 4,
+                  color:
+                    location.pathname === "/slots" && !category.subCategories
+                      ? "gold"
+                      : "white",
+                  "&:hover": { color: "gold" },
+                }}
                 onClick={() =>
                   category.subCategories
                     ? handleSubcategoriesShow(category.name)
@@ -100,7 +119,15 @@ export const Menu: React.FC = () => {
                   <List component="div" sx={{ pl: 4 }}>
                     {category.subCategories.map((subCategory, index) => (
                       <ListItemButton
-                        sx={{ pl: 4 }}
+                        sx={{
+                          pl: 4,
+                          color: location.pathname.includes(
+                            subCategory.name.toLowerCase()
+                          )
+                            ? "gold"
+                            : "white",
+                          "&:hover": { color: "gold" },
+                        }}
                         onClick={() =>
                           goToSubCategoryGamePage(
                             category.name,
@@ -120,7 +147,14 @@ export const Menu: React.FC = () => {
         </List>
       </Collapse>
 
-      <ListItem disablePadding sx={{ cursor: "pointer" }}>
+      <ListItem
+        disablePadding
+        sx={{
+          cursor: "pointer",
+          color: location.pathname.includes("favorites") ? "gold" : "white",
+          "&:hover": { color: "gold" },
+        }}
+      >
         <ListItemButton onClick={() => navigate("/favorites")}>
           <ListItemText primary="Favorites" />
         </ListItemButton>

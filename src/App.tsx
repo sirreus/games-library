@@ -15,6 +15,7 @@ import "./App.scss";
 import SlotsGames from "./pages/SlotsGames";
 import RouletteGames from "./pages/RouletteGames";
 import BlackjackGames from "./pages/BlackjackGames";
+import PokerGames from "./pages/PokerGames";
 
 function App() {
   const isMobile = useMobile();
@@ -39,7 +40,7 @@ function App() {
         />
         <Route
           path="/card-games/poker"
-          element={<SlotsGames isMobile={isMobile} />}
+          element={<PokerGames isMobile={isMobile} />}
         />
       </Routes>
     </BrowserRouter>
