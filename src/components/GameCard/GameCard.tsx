@@ -48,7 +48,13 @@ export const GameCard: React.FC<IGameCard> = ({
   return (
     <Card sx={{ maxWidth: isLessSM ? "100%" : 345, minWidth: 184 }}>
       <CardMedia component="img" alt={name} height="140" image={image} />
-      <CardContent sx={{ backgroundColor: "#252b40", color: "white" }}>
+      <CardContent
+        sx={{
+          minHeight: isLessSM ? "fit-content" : "216px",
+          backgroundColor: "#252b40",
+          color: "white",
+        }}
+      >
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
