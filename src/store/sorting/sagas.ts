@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { put, takeLatest } from "redux-saga/effects";
-import { setSortedGames, setSortedGamesAction } from "./slices";
+import { setSortedGames, SORTING_GAMES_ACTION } from "./slices";
 import { setError } from "../games/slices";
 import { IGame } from "../games/types";
 
@@ -19,5 +19,5 @@ function* setSortedGamesSaga(action: PayloadAction<IGame[]>) {
 }
 
 export function* watchSortingGames() {
-  yield takeLatest(setSortedGamesAction, setSortedGamesSaga);
+  yield takeLatest(SORTING_GAMES_ACTION, setSortedGamesSaga);
 }

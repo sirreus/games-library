@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../store";
-import { setFavorite, removeFromFavorite } from "../../store/games/slices";
+import {
+  setFavoriteAction,
+  removeFromFavoriteAction,
+} from "../../store/games/slices";
 import { IGame, IGamesStore } from "../../store/games/types";
 
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -53,9 +56,9 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ data, isMobile }) => {
       (game) => game.name === selectedGame.name
     );
     if (isFavorite) {
-      dispatch(removeFromFavorite(selectedGame.name));
+      dispatch(removeFromFavoriteAction(selectedGame.name));
     } else {
-      dispatch(setFavorite(selectedGame));
+      dispatch(setFavoriteAction(selectedGame));
     }
   };
 

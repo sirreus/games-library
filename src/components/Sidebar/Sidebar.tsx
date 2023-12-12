@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { IApp } from "../../store/app/types";
 import { RootState } from "../../store";
 import { useDispatch } from "react-redux";
-import { toggleMobileMenu } from "../../store/app/slices";
+import { toggleMobileMenuAction } from "../../store/app/slices";
 
 const drawerWidth = 240;
 
@@ -21,7 +21,7 @@ export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
   );
 
   const handleDrawerOpen = (state: boolean) => {
-    dispatch(toggleMobileMenu(state));
+    dispatch(toggleMobileMenuAction(state));
   };
 
   return !isMobile ? (

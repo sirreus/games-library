@@ -1,10 +1,7 @@
-import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { APP, IApp } from "./types";
 
-export const toggleMobileMenuAction = createAction(
-  `${APP}/toggleMobileMenu`,
-  (isMobileMenuOpen: boolean) => ({ payload: { isMobileMenuOpen } })
-);
+export const TOGGLE_MENU_ACTION = `${APP}/toggleMobileMenuAction`;
 
 const appInitialState: IApp = {
   isMobileMenuOpen: false,
@@ -15,6 +12,7 @@ export const appSlices = createSlice({
   name: APP,
   initialState: appInitialState,
   reducers: {
+    toggleMobileMenuAction: (state: IApp, action: PayloadAction<boolean>) => {},
     toggleMobileMenu: (state: IApp, action: PayloadAction<boolean>) => {
       state.isMobileMenuOpen = action.payload;
     },
@@ -24,6 +22,7 @@ export const appSlices = createSlice({
   },
 });
 
-export const { toggleMobileMenu, setAppError } = appSlices.actions;
+export const { toggleMobileMenu, toggleMobileMenuAction, setAppError } =
+  appSlices.actions;
 
 export default appSlices.reducer;

@@ -2,9 +2,9 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { put, takeLatest } from "redux-saga/effects";
 import {
   setFavorite,
-  setFavoriteAction,
+  SET_AS_FAVORITE,
   removeFromFavorite,
-  removeFromFavoriteAction,
+  REMOVE_FROM_FAVORITE,
   setError,
 } from "./slices";
 import { IGame } from "./types";
@@ -38,6 +38,6 @@ function* removeFromFavoriteSaga(action: PayloadAction<string>) {
 }
 
 export function* watchGames() {
-  yield takeLatest(setFavoriteAction, setFavoriteSaga);
-  yield takeLatest(removeFromFavoriteAction, removeFromFavoriteSaga);
+  yield takeLatest(SET_AS_FAVORITE, setFavoriteSaga);
+  yield takeLatest(REMOVE_FROM_FAVORITE, removeFromFavoriteSaga);
 }

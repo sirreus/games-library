@@ -6,7 +6,7 @@ import { IGame } from "../../store/games/types";
 import { Stack, Toolbar, Typography, Button } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { setSortedGames } from "../../store/sorting/slices";
+import { setSortedGamesAction } from "../../store/sorting/slices";
 
 type SortingBy = "name" | "rating" | "users" | "";
 type SortingOrder = "asc" | "desc";
@@ -91,7 +91,7 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
      */
     const targetData = [...data];
 
-    dispatch(setSortedGames(targetData.sort(sortByFn)));
+    dispatch(setSortedGamesAction(targetData.sort(sortByFn)));
   };
 
   return (

@@ -11,5 +11,4 @@ const rootSaga = function* () {
     // Other forks
   ]);
 };
-
 export default rootSaga;

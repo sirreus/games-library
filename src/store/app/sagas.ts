@@ -1,9 +1,8 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { put, takeLatest } from "redux-saga/effects";
 import { IApp } from "./types";
-import { toggleMobileMenu, setAppError } from "./slices";
+import { toggleMobileMenu, TOGGLE_MENU_ACTION, setAppError } from "./slices";
 
-// Generator function
 function* toggleMobileMenuSaga(
   action: PayloadAction<IApp["isMobileMenuOpen"]>
 ) {
@@ -20,7 +19,6 @@ function* toggleMobileMenuSaga(
   }
 }
 
-// Generator function
 export function* watchApp() {
-  yield takeLatest(toggleMobileMenu, toggleMobileMenuSaga);
+  yield takeLatest(TOGGLE_MENU_ACTION, toggleMobileMenuSaga);
 }

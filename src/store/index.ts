@@ -1,12 +1,12 @@
-// import createSagaMiddleware from "@redux-saga/core";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
+import createSagaMiddleware from "@redux-saga/core";
 import storage from "redux-persist/lib/storage";
 
 import rootReducers from "./rootReduser";
-// import rootSaga from "./rootSagas";
+import rootSaga from "./rootSagas";
 
-// const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: "root",
@@ -21,13 +21,10 @@ export const store = configureStore({
     games: persistedRootGame,
     sorting: rootReducers.sorting,
   },
-  middleware: getDefaultMiddleware({
-    serializableCheck: false,
-  }),
-  // middleware: [sagaMiddleware],
+  middleware: [sagaMiddleware],
 });
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export const persistor = persistStore(store);
