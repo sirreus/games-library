@@ -72,7 +72,9 @@ export const Menu: React.FC = () => {
               {!category.subCategories ? (
                 <MenuItemBasic
                   text={category.name}
-                  isSelected={location.pathname === category.name.toLowerCase()}
+                  isSelected={
+                    location.pathname === `/${category.name.toLowerCase()}`
+                  }
                   onClick={() => goTo(category.name.toLowerCase())}
                   isNested
                   key={index}

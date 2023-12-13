@@ -22,7 +22,7 @@ export const MenuItemBasic: React.FC<IMenuItemBasic> = ({
         pl: isNested ? 4 : 0,
         color: isSelected ? "gold" : "white",
         cursor: "pointer",
-        "&:hover": { color: "gold" },
+        "&:hover": { backgroundColor: "#3b435f" },
       }}
     >
       <ListItemButton onClick={() => onClick()}>

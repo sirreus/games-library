@@ -22,7 +22,7 @@ export const MenuItemCollapsed: React.FC<IMenuItemCollapsed> = ({
       sx={{
         pl: isNested ? 4 : 0,
         cursor: "pointer",
-        "&:hover": { color: "gold" },
+        "&:hover": { backgroundColor: "#3b435f" },
       }}
     >
       <ListItemButton onClick={() => onClick()}>
