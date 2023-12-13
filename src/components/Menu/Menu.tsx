@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Collapse,
-} from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { List, Collapse } from "@mui/material";
 import { setSortedGames } from "../../store/sorting/slices";
+import MenuItemBasic from "../MenuItemBasic";
+import MenuItemCollapsed from "../MenuItemCollapsed";
 
 export const Menu: React.FC = () => {
   const navigate = useNavigate();
@@ -59,116 +54,80 @@ export const Menu: React.FC = () => {
 
   return (
     <List>
-      <ListItem
-        disablePadding
-        sx={{
-          cursor: "pointer",
-          color: location.pathname === "/" ? "gold" : "white",
-          "&:hover": { color: "gold" },
-        }}
-      >
-        <ListItemButton onClick={() => goTo("/")}>
-          <ListItemText primary="Home" />
-        </ListItemButton>
-      </ListItem>
-
-      <ListItem
-        disablePadding
-        sx={{ cursor: "pointer", "&:hover": { color: "gold" } }}
-      >
-        <ListItemButton onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
-          <ListItemText primary="Game categories" />
-          {isCategoriesOpen ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-      </ListItem>
-
+      <MenuItemBasic
+        text="Home"
+        isSelected={location.pathname === "/"}
+        onClick={() => goTo("/")}
+      />
+      <MenuItemCollapsed
+        text="Game categories"
+        isOpen={isCategoriesOpen}
+        onClick={() => setCategoriesOpen(!isCategoriesOpen)}
+      />
       {/* GAME CATEGORIES */}
       <Collapse in={isCategoriesOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {categories.map((category, index) => (
             <React.Fragment key={index}>
-              <ListItemButton
-                sx={{
-                  pl: 4,
-                  color:
-                    location.pathname === "/slots" && !category.subCategories
-                      ? "gold"
-                      : "white",
-                  "&:hover": { color: "gold" },
-                }}
-                onClick={() =>
-                  category.subCategories
-                    ? handleSubcategoriesShow(category.name)
-                    : goTo(category.name.toLowerCase())
-                }
-                key={index}
-              >
-                <ListItemText primary={category.name} />
-                {category.subCategories && (
-                  <>
-                    {isSubCategoriesOpen.state &&
-                    isSubCategoriesOpen.name === category.name ? (
-                      <ExpandLess />
-                    ) : (
-                      <ExpandMore />
-                    )}
-                  </>
-                )}
-              </ListItemButton>
-
-              {/* GAME SUBCATEGORIES */}
-              {category.subCategories && (
-                <Collapse
-                  in={
-                    isSubCategoriesOpen.state &&
-                    isSubCategoriesOpen.name === category.name
-                  }
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <List component="div" sx={{ pl: 4 }}>
-                    {category.subCategories.map((subCategory, index) => (
-                      <ListItemButton
-                        sx={{
-                          pl: 4,
-                          color: location.pathname.includes(
+              {!category.subCategories ? (
+                <MenuItemBasic
+                  text={category.name}
+                  isSelected={location.pathname === category.name.toLowerCase()}
+                  onClick={() => goTo(category.name.toLowerCase())}
+                  isNested
+                  key={index}
+                />
+              ) : (
+                <React.Fragment key={index}>
+                  <MenuItemCollapsed
+                    text={category.name}
+                    isOpen={
+                      isSubCategoriesOpen.state &&
+                      isSubCategoriesOpen.name === category.name
+                    }
+                    onClick={() => handleSubcategoriesShow(category.name)}
+                    isNested
+                  />
+                  {/* GAME SUBCATEGORIES */}
+                  <Collapse
+                    in={
+                      isSubCategoriesOpen.state &&
+                      isSubCategoriesOpen.name === category.name
+                    }
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <List component="div" sx={{ pl: 4 }}>
+                      {category.subCategories.map((subCategory, index) => (
+                        <MenuItemBasic
+                          isSelected={location.pathname.includes(
                             subCategory.name.toLowerCase()
-                          )
-                            ? "gold"
-                            : "white",
-                          "&:hover": { color: "gold" },
-                        }}
-                        onClick={() =>
-                          goToSubCategoryGamePage(
-                            category.name,
-                            subCategory.name
-                          )
-                        }
-                        key={index}
-                      >
-                        <ListItemText primary={subCategory.name} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </Collapse>
+                          )}
+                          text={subCategory.name}
+                          isNested
+                          onClick={() =>
+                            goToSubCategoryGamePage(
+                              category.name,
+                              subCategory.name
+                            )
+                          }
+                          key={index}
+                        />
+                      ))}
+                    </List>
+                  </Collapse>
+                </React.Fragment>
               )}
             </React.Fragment>
           ))}
         </List>
       </Collapse>
 
-      <ListItem
-        disablePadding
-        sx={{
-          cursor: "pointer",
-          color: location.pathname.includes("favorites") ? "gold" : "white",
-          "&:hover": { color: "gold" },
-        }}
-      >
-        <ListItemButton onClick={() => navigate("/favorites")}>
-          <ListItemText primary="Favorites" />
-        </ListItemButton>
-      </ListItem>
+      <MenuItemBasic
+        isSelected={location.pathname === "/favorites"}
+        text="Favorites"
+        onClick={() => goTo("/favorites")}
+      />
     </List>
   );
 };
