@@ -8,6 +8,8 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { setSortedGamesAction } from "../../store/sorting/slices";
 
+import "./styles.scss";
+
 type SortingBy = "name" | "rating" | "users" | "";
 type SortingOrder = "asc" | "desc";
 
@@ -101,25 +103,19 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
         direction="row"
         spacing={2}
         alignItems="center"
-        sx={{
-          marginLeft: isMobile ? "32px !important" : "272px !important",
-          "@media screen and (max-width: 600px)": {
-            marginLeft: "16px !important",
-          },
-        }}
+        className={
+          isMobile ? "sorting-bar-wrapper ml32" : "sorting-bar-wrapper"
+        }
       >
         <Typography fontSize={18} color="wheat">
           Sort by:
         </Typography>
         {SORTING_VARIANTS.map((variant: SortingBy) => (
           <Button
+            className={
+              sorting.by === variant ? "sorting-btn active" : "sorting-btn"
+            }
             onClick={() => handelSortingData(variant)}
-            sx={{
-              textTransform: "none",
-              fontSize: "16px",
-              color: "wheat",
-              textDecoration: sorting.by === variant ? "underline" : "none",
-            }}
             startIcon={
               sorting.by === variant ? (
                 sorting.order === "asc" ? (

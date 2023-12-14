@@ -1,0 +1,40 @@
+@mixin state($isTablet) {
+  margin-left: 272px !important;
+  @media screen and (max-width: 600px) {
+    margin-left: 16px !important;
+  }
+
+  @if $isTablet {
+    margin-left: 32px !important;
+    @media screen and (max-width: 600px) {
+      margin-left: 16px !important;
+    }
+  }
+}
+
+.sorting-bar-wrapper {
+  @include state($isTablet: false);
+}
+.sorting-bar-wrapper.ml32 {
+  @include state($isTablet: true);
+}
+
+@mixin decoration($isActive) {
+  text-decoration: none;
+
+  @if $isActive {
+    text-decoration: underline;
+  }
+}
+
+button.sorting-btn {
+  text-transform: none;
+  font-size: 16px;
+  color: wheat;
+
+  @include decoration($isActive: false);
+
+  &.active {
+    @include decoration($isActive: true);
+  }
+}
