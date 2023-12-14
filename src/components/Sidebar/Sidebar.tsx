@@ -1,14 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Drawer, SwipeableDrawer, Toolbar } from "@mui/material";
-import Menu from "../Menu";
-import { useSelector } from "react-redux";
 import { IApp } from "../../store/app/types";
 import { RootState } from "../../store";
-import { useDispatch } from "react-redux";
 import { toggleMobileMenuAction } from "../../store/app/slices";
 
-const drawerWidth = 240;
+import { Drawer, SwipeableDrawer, Toolbar } from "@mui/material";
+
+import Menu from "../Menu";
+
+import "./styles.scss";
 
 interface ISidebar {
   isMobile: boolean;
@@ -27,20 +28,9 @@ export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
   return !isMobile ? (
     <Drawer
       variant="permanent"
+      className="desktop-drawer"
       sx={{
-        width: drawerWidth,
-        flexShrink: 0,
         display: isMobile ? "none" : "block",
-        backgroundColor: "#191616",
-        color: "white",
-        "& .MuiPaper-root": {
-          backgroundColor: "#191616",
-          color: "white",
-        },
-        [`& .MuiDrawer-paper`]: {
-          width: drawerWidth,
-          boxSizing: "border-box",
-        },
       }}
     >
       <Toolbar />
@@ -49,16 +39,10 @@ export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
   ) : (
     <SwipeableDrawer
       anchor="right"
+      className="mobile-drawer"
       open={isMobileMenuOpen}
       onClose={() => handleDrawerOpen(false)}
       onOpen={() => handleDrawerOpen(true)}
-      sx={{
-        "& .MuiPaper-root": {
-          width: drawerWidth,
-          backgroundColor: "#2c2c2c",
-          color: "white",
-        },
-      }}
     >
       <Toolbar />
       <Menu />

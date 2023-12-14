@@ -1,0 +1,27 @@
+@use "../../variables" as v;
+$drawerWidth: 240px;
+
+.desktop-drawer {
+  width: $drawerWidth;
+  flex-shrink: 0;
+  background-color: v.$primary-bg !important;
+  color: white;
+
+  .MuiPaper-root {
+    background-color: v.$primary-bg !important;
+    color: white;
+  }
+
+  .MuiDrawer-paper {
+    width: $drawerWidth;
+    box-sizing: border-box;
+  }
+}
+
+.mobile-drawer {
+  .MuiPaper-root {
+    width: $drawerWidth;
+    background-color: v.$mobile-menu-bg !important;
+    color: white;
+  }
+}
