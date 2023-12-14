@@ -14,6 +14,8 @@ import Rating from "./components/Rating";
 import ActiveUsers from "./components/ActiveUsers";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
+import "./styles.scss";
+
 interface IGameCardExpand {
   open: boolean;
   data: any;
@@ -33,42 +35,15 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
 
   const isLessSM = width < 480;
 
-  const fullScreenStyles = {
-    height: "100%",
-    maxHeight: "100%",
-    width: "100%",
-    maxWidth: "100%",
-    margin: 0,
-  };
-
   return (
-    <Dialog
-      open={open}
-      sx={{
-        "& .MuiDialog-container > .MuiPaper-root": {
-          backgroundColor: "darkslategray",
-          color: "white",
-          width: "fit-content",
-          maxWidth: "768px",
-          ...(isLessSM && fullScreenStyles),
-        },
-      }}
-    >
+    <Dialog open={open} className={isLessSM ? "card-big-mobile" : "card-big"}>
       <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
         {name}
       </DialogTitle>
       <IconButton
+        className="card-big close-btn"
         aria-label="close"
         onClick={() => onClose()}
-        sx={{
-          position: "absolute",
-          right: 8,
-          top: 8,
-          color: (theme) => theme.palette.grey[500],
-          "&:hover": {
-            color: "white",
-          },
-        }}
       >
         <CloseIcon />
       </IconButton>
@@ -86,12 +61,9 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
           <Stack direction="column" spacing={2}>
             <Box
               component="img"
+              className={isMobile ? "game-props-mobile" : "game-props"}
               src={image}
               alt={name}
-              sx={{
-                width: isMobile ? "auto" : "375px",
-                margin: isMobile ? "0 -24px 0 -24px !important" : 0,
-              }}
             />
             <Stack direction="row" spacing={2}>
               <Rating rating={rating || 0.0} />

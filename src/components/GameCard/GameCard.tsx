@@ -23,6 +23,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import GradeIcon from "@mui/icons-material/Grade";
 import PersonIcon from "@mui/icons-material/Person";
 
+import "./styles.scss";
+
 interface IGameCard {
   data: IGame;
   onSelect: (index: number) => void;
@@ -48,22 +50,16 @@ export const GameCard: React.FC<IGameCard> = ({
   return (
     <Card
       onClick={() => onSelect(id)}
+      className="card"
       sx={{
         maxWidth: isLessSM ? "100%" : 345,
-        minWidth: 184,
-        backgroundColor: "darkslategray",
-        "&:hover": {
-          backgroundColor: "#537b7b",
-        },
-        cursor: "pointer",
       }}
     >
       <CardMedia
         component="img"
-        alt={name}
-        height="140"
+        className="card-img"
         image={image}
-        sx={{ borderRadius: "0 0 16px 16px" }}
+        alt={name}
       />
       <CardContent
         sx={{
@@ -96,7 +92,6 @@ export const GameCard: React.FC<IGameCard> = ({
       <CardActions
         sx={{
           justifyContent: "space-between",
-          color: "white",
         }}
       >
         <Button

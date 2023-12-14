@@ -1,0 +1,15 @@
+@use "../../variables" as v;
+
+.card {
+  min-width: 184px;
+  background-color: v.$card-bg !important;
+  cursor: pointer;
+  &:hover {
+    background-color: v.$card-bg-highlights !important;
+  }
+
+  .card-img {
+    height: 180px;
+    border-radius: 0 0 16px 16px;
+  }
+}

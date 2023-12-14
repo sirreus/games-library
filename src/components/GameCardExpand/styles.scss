@@ -1,0 +1,60 @@
+@use "../../variables" as v;
+
+@mixin dialog($isMobile: false) {
+  .MuiDialog-container {
+    .MuiPaper-root {
+      width: fit-content;
+      max-width: 768px;
+      background-color: v.$card-bg !important;
+      color: white;
+    }
+  }
+
+  @if $isMobile {
+    .MuiDialog-container {
+      .MuiPaper-root {
+        height: 100%;
+        max-height: 100%;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        background-color: v.$card-bg !important;
+        color: white;
+      }
+    }
+  }
+}
+
+.card-big {
+  @include dialog($isMobile: false);
+}
+.card-big-mobile {
+  @include dialog($isMobile: true);
+}
+
+.card-big.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: lightgray;
+  &:hover {
+    color: white;
+  }
+}
+
+@mixin state($isMobile: false) {
+  width: 375px;
+  margin: 0;
+
+  @if $isMobile {
+    width: auto;
+    margin: 0 -24px 0 -24px !important;
+  }
+}
+
+.game-props {
+  @include state($isMobile: false);
+}
+.game-props-mobile {
+  @include state($isMobile: true);
+}
