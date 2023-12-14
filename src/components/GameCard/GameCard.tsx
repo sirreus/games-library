@@ -46,12 +46,28 @@ export const GameCard: React.FC<IGameCard> = ({
   const isLessSM = width < 480;
 
   return (
-    <Card sx={{ maxWidth: isLessSM ? "100%" : 345, minWidth: 184 }}>
-      <CardMedia component="img" alt={name} height="140" image={image} />
+    <Card
+      onClick={() => onSelect(id)}
+      sx={{
+        maxWidth: isLessSM ? "100%" : 345,
+        minWidth: 184,
+        backgroundColor: "darkslategray",
+        "&:hover": {
+          backgroundColor: "#537b7b",
+        },
+        cursor: "pointer",
+      }}
+    >
+      <CardMedia
+        component="img"
+        alt={name}
+        height="140"
+        image={image}
+        sx={{ borderRadius: "0 0 16px 16px" }}
+      />
       <CardContent
         sx={{
           minHeight: isLessSM ? "fit-content" : "216px",
-          backgroundColor: "#252b40",
           color: "white",
         }}
       >
@@ -80,11 +96,14 @@ export const GameCard: React.FC<IGameCard> = ({
       <CardActions
         sx={{
           justifyContent: "space-between",
-          backgroundColor: "#252b40",
           color: "white",
         }}
       >
-        <Button size="small" onClick={() => onSelect(id)}>
+        <Button
+          size="small"
+          onClick={() => onSelect(id)}
+          sx={{ color: "wheat" }}
+        >
           Learn More
         </Button>
         <IconButton

@@ -108,11 +108,18 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
           },
         }}
       >
-        <Typography fontSize={18}>Sort by:</Typography>
+        <Typography fontSize={18} color="wheat">
+          Sort by:
+        </Typography>
         {SORTING_VARIANTS.map((variant: SortingBy) => (
           <Button
             onClick={() => handelSortingData(variant)}
-            sx={{ textTransform: "none", fontSize: "16px" }}
+            sx={{
+              textTransform: "none",
+              fontSize: "16px",
+              color: "wheat",
+              textDecoration: sorting.by === variant ? "underline" : "none",
+            }}
             startIcon={
               sorting.by === variant ? (
                 sorting.order === "asc" ? (

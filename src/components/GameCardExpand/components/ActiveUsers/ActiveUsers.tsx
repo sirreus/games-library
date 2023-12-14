@@ -12,7 +12,7 @@ export const ActiveUsers: React.FC<IActiveUsers> = ({ amount }) => {
     <Stack direction="row">
       <Chip
         icon={<PersonIcon color="success" />}
-        label={amount}
+        label={`Active users: ${amount}`}
         variant="outlined"
         sx={{ color: "white" }}
       />

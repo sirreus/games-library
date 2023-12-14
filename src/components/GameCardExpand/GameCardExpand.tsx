@@ -46,7 +46,7 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
       open={open}
       sx={{
         "& .MuiDialog-container > .MuiPaper-root": {
-          backgroundColor: "#252b40",
+          backgroundColor: "darkslategray",
           color: "white",
           width: "fit-content",
           maxWidth: "768px",
@@ -65,6 +65,9 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
           right: 8,
           top: 8,
           color: (theme) => theme.palette.grey[500],
+          "&:hover": {
+            color: "white",
+          },
         }}
       >
         <CloseIcon />

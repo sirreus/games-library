@@ -31,10 +31,10 @@ export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
         width: drawerWidth,
         flexShrink: 0,
         display: isMobile ? "none" : "block",
-        backgroundColor: "#252b40",
+        backgroundColor: "#191616",
         color: "white",
         "& .MuiPaper-root": {
-          backgroundColor: "#252b40",
+          backgroundColor: "#191616",
           color: "white",
         },
         [`& .MuiDrawer-paper`]: {
@@ -55,7 +55,7 @@ export const Sidebar: React.FC<ISidebar> = ({ isMobile }) => {
       sx={{
         "& .MuiPaper-root": {
           width: drawerWidth,
-          backgroundColor: "#252b40",
+          backgroundColor: "#2c2c2c",
           color: "white",
         },
       }}

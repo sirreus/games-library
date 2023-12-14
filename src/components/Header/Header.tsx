@@ -30,13 +30,13 @@ export const Header: React.FC<IHeader> = ({ isMobile }) => {
         flexDirection: "row",
         justifyContent: "space-between",
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        backgroundColor: "#252b40",
+        backgroundColor: isMobileMenuOpen ? "#2c2c2c" : "#191616",
         color: "white",
         boxShadow: "none",
       }}
     >
       <Toolbar>
-        <Typography variant="h6" noWrap component="div">
+        <Typography variant="h6" noWrap component="div" color="gold">
           Welcome to Games Global store!
         </Typography>
       </Toolbar>

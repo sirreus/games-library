@@ -12,7 +12,7 @@ export const Rating: React.FC<IRating> = ({ rating }) => {
     <Stack direction="row">
       <Chip
         icon={<GradeIcon color="secondary" sx={{ color: "gold" }} />}
-        label={rating}
+        label={`Rating: ${rating}`}
         variant="outlined"
         sx={{ color: "white" }}
       />
