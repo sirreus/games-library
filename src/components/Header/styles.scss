@@ -1,0 +1,15 @@
+@use "../../variables" as v;
+
+.header {
+  position: fixed;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  background-color: v.$primary-bg !important;
+  box-shadow: none !important;
+  z-index: 10;
+
+  &.as-mobile-menu {
+    background-color: v.$mobile-menu-bg !important;
+  }
+}

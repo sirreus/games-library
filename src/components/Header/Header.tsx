@@ -7,6 +7,8 @@ import { toggleMobileMenuAction } from "../../store/app/slices";
 import { IApp } from "../../store/app/types";
 import { RootState } from "../../store";
 
+import "./styles.scss";
+
 interface IHeader {
   isMobile: boolean;
 }
@@ -24,15 +26,9 @@ export const Header: React.FC<IHeader> = ({ isMobile }) => {
 
   return (
     <AppBar
-      position="fixed"
+      className={isMobileMenuOpen ? "header as-mobile-menu" : "header"}
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        backgroundColor: isMobileMenuOpen ? "#2c2c2c" : "#191616",
-        color: "white",
-        boxShadow: "none",
       }}
     >
       <Toolbar>
