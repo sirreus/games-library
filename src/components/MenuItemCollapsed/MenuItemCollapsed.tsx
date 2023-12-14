@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { IApp } from "../../store/app/types";
 
+import "../MenuItemBasic/styles.scss";
+
 interface IMenuItemCollapsed {
   text: string;
   isOpen: boolean;
@@ -26,12 +28,9 @@ export const MenuItemCollapsed: React.FC<IMenuItemCollapsed> = ({
   return (
     <ListItem
       disablePadding
+      className={isMobileMenuOpen ? "menu-item mobile" : "menu-item"}
       sx={{
         pl: isNested ? 4 : 0,
-        cursor: "pointer",
-        "&:hover": {
-          backgroundColor: isMobileMenuOpen ? "#191616" : "#2c2c2c",
-        },
       }}
     >
       <ListItemButton onClick={() => onClick()}>

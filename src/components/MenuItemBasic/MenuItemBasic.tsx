@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { IApp } from "../../store/app/types";
 
+import "./styles.scss";
+
 interface IMenuItemBasic {
   text: string;
   onClick: () => void;
@@ -25,13 +27,10 @@ export const MenuItemBasic: React.FC<IMenuItemBasic> = ({
   return (
     <ListItem
       disablePadding
+      className={isMobileMenuOpen ? "menu-item mobile" : "menu-item"}
       sx={{
         pl: isNested ? 4 : 0,
         color: isSelected ? "gold" : "white",
-        cursor: "pointer",
-        "&:hover": {
-          backgroundColor: isMobileMenuOpen ? "#191616" : "#2c2c2c",
-        },
       }}
     >
       <ListItemButton onClick={() => onClick()}>

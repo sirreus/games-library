@@ -1,0 +1,15 @@
+@use "../../variables" as v;
+
+.menu-item {
+  cursor: pointer;
+
+  &:hover {
+    background-color: v.$mobile-menu-bg !important;
+  }
+
+  &.mobile {
+    &:hover {
+      background-color: v.$primary-bg !important;
+    }
+  }
+}
