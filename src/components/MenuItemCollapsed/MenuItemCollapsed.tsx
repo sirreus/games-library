@@ -1,10 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../store";
+import { IApp } from "../../store/app/types";
 
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { IApp } from "../../store/app/types";
 
 import "../MenuItemBasic/styles.scss";
 

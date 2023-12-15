@@ -4,6 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 
 import { useMobile } from "./hooks/useMobile";
 
+import SlotsGames from "./pages/SlotsGames";
+import RouletteGames from "./pages/RouletteGames";
+import BlackjackGames from "./pages/BlackjackGames";
+import PokerGames from "./pages/PokerGames";
+
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import MainPage from "./pages/MainPage";
@@ -12,10 +17,6 @@ import Favorites from "./pages/Favorites";
 import { CssBaseline } from "@mui/material";
 
 import "./App.scss";
-import SlotsGames from "./pages/SlotsGames";
-import RouletteGames from "./pages/RouletteGames";
-import BlackjackGames from "./pages/BlackjackGames";
-import PokerGames from "./pages/PokerGames";
 
 function App() {
   const isMobile = useMobile();

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { setSortedGamesAction } from "../../store/sorting/slices";
 import { IGame } from "../../store/games/types";
 
 import { Stack, Toolbar, Typography, Button } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { setSortedGamesAction } from "../../store/sorting/slices";
 
 import "./styles.scss";
 

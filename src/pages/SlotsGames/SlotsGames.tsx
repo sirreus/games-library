@@ -1,11 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../store";
+import { IGame } from "../../store/games/types";
 
 import GamesLibrary from "../../components/GamesLibrary";
-import gamesData from "../../constants/gamesData";
 import SortingBar from "../../components/SortingBar";
-import { IGame } from "../../store/games/types";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+
+import gamesData from "../../constants/gamesData";
 
 interface ISlotsGames {
   isMobile: boolean;

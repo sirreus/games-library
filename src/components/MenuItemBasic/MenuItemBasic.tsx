@@ -1,9 +1,10 @@
 import React from "react";
-
-import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { useSelector } from "react-redux";
+
 import { RootState } from "../../store";
 import { IApp } from "../../store/app/types";
+
+import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 import "./styles.scss";
 

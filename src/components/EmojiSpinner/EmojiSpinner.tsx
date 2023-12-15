@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Box } from "@mui/system";
+
 import EmojiIcon from "../EmojiIcon";
 
 import "./styles.scss";

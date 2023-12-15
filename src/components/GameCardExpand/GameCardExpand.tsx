@@ -1,5 +1,7 @@
 import React from "react";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
 import {
   Box,
   Dialog,
@@ -10,9 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+
 import Rating from "./components/Rating";
 import ActiveUsers from "./components/ActiveUsers";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 import "./styles.scss";
 

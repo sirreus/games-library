@@ -1,10 +1,10 @@
 import React from "react";
-
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { IGame, IGamesStore } from "../../store/games/types";
 
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+
+import { RootState } from "../../store";
+import { IGame, IGamesStore } from "../../store/games/types";
 
 import {
   Button,

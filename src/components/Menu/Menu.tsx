@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { List, Collapse } from "@mui/material";
 import { setSortedGames } from "../../store/sorting/slices";
+
+import { List, Collapse } from "@mui/material";
+
 import MenuItemBasic from "../MenuItemBasic";
 import MenuItemCollapsed from "../MenuItemCollapsed";
 
