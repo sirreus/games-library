@@ -17,6 +17,8 @@ import GameCardExpand from "../GameCardExpand";
 
 import gamesData from "../../constants/gamesData";
 
+import "./styles.scss";
+
 interface IGamesLibrary {
   data: IGame[];
   isMobile: boolean;
@@ -66,10 +68,10 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ data, isMobile }) => {
 
   return (
     <Box
+      component="div"
+      className="library-wrapper"
       sx={{
-        padding: { xs: "16px", sm: "32px" },
         marginLeft: isMobile ? 0 : "240px",
-        width: "fit-content",
       }}
     >
       <Grid

@@ -1,3 +1,16 @@
+@use "../../variables" as v;
+
+.sorting-bar-wrapper {
+  position: fixed;
+  width: 100%;
+  padding: 52px 0 16px 0;
+  background-color: v.$primary-bg;
+  z-index: 2;
+  @media screen and (max-width: 768px) {
+    padding: 24px 0 16px 0;
+  }
+}
+
 @mixin state($isTablet) {
   margin-left: 272px !important;
   @media screen and (max-width: 600px) {
@@ -12,10 +25,10 @@
   }
 }
 
-.sorting-bar-wrapper {
+.sorting-bar {
   @include state($isTablet: false);
 }
-.sorting-bar-wrapper.ml32 {
+.sorting-bar.ml32 {
   @include state($isTablet: true);
 }
 

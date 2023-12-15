@@ -3,13 +3,33 @@
 .header {
   position: fixed;
   display: flex;
+  align-items: center !important;
   flex-direction: row !important;
   justify-content: space-between !important;
+  max-width: 1440px !important;
+  padding-top: 24px;
   background-color: v.$primary-bg !important;
   box-shadow: none !important;
-  z-index: 10;
+  right: unset !important;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 16px;
+  }
 
   &.as-mobile-menu {
     background-color: v.$mobile-menu-bg !important;
+  }
+
+  .mobile-menu-btn {
+    margin-right: 24px;
+    color: inherit;
+
+    @media screen and (max-width: 768px) {
+      padding-bottom: 26px;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-right: 8px;
+    }
   }
 }

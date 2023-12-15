@@ -1,0 +1,8 @@
+.library-wrapper {
+  width: fit-content;
+  padding: 184px 32px 32px 32px;
+
+  @media screen and (max-width: 768px) {
+    padding: 128px 16px 16px 16px;
+  }
+}

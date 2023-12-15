@@ -8,6 +8,9 @@ $drawerWidth: 240px;
   color: white;
 
   .MuiPaper-root {
+    top: 52px;
+    left: unset !important;
+    padding-left: 8px;
     background-color: v.$primary-bg !important;
     color: white;
   }

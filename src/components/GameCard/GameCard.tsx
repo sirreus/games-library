@@ -49,7 +49,7 @@ export const GameCard: React.FC<IGameCard> = ({
 
   return (
     <Card
-      onClick={() => onSelect(id)}
+      // onClick={() => onSelect(id)}
       className="card"
       sx={{
         maxWidth: isLessSM ? "100%" : 345,

@@ -5,14 +5,18 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 1440px;
+  height: 100vh;
+  background-color: inherit !important;
+  margin: 0 auto !important;
 
   #root {
+    position: relative;
     background-color: v.$primary-bg;
   }
 }

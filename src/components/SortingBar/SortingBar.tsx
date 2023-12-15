@@ -97,15 +97,13 @@ export const SortingBar: React.FC<ISortingBar> = ({ data, isMobile }) => {
   };
 
   return (
-    <Stack spacing={1}>
+    <Stack className="sorting-bar-wrapper" spacing={1}>
       <Toolbar />
       <Stack
         direction="row"
         spacing={2}
         alignItems="center"
-        className={
-          isMobile ? "sorting-bar-wrapper ml32" : "sorting-bar-wrapper"
-        }
+        className={isMobile ? "sorting-bar ml32" : "sorting-bar"}
       >
         <Typography fontSize={18} color="wheat">
           Sort by:
