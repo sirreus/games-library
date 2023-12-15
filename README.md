@@ -2,7 +2,13 @@
 
 Demo web application built in **ReactJS** with **TypeScript** and used **Redux-saga** as state manager. UI created via **Material UI** and **SCSS**. The module builder is **Webpack**.
 
-## Common app scripts:
+## Common app scripts
+
+Go to project dir and run
+
+### `npm i`
+
+- install all packages and dependencies
 
 ### `npm start`
 
