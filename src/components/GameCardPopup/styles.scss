@@ -25,14 +25,14 @@
   }
 }
 
-.card-big {
+.card-popup {
   @include dialog($isMobile: false);
 }
-.card-big-mobile {
+.card-popup-mobile {
   @include dialog($isMobile: true);
 }
 
-.card-big.close-btn {
+.card-popup.close-btn {
   position: absolute;
   top: 8px;
   right: 8px;

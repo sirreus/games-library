@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { IGame } from "../../store/games/types";
 
-import GamesLibrary from "../../components/GamesLibrary";
+import GameLibrary from "../../components/GameLibrary";
 import SortingBar from "../../components/SortingBar";
 
 import gamesData from "../../constants/gamesData";
@@ -25,7 +25,7 @@ export const RouletteGames: React.FC<IRouletteGames> = ({ isMobile }) => {
   return (
     <>
       <SortingBar data={rouletteGames} isMobile={isMobile} />
-      <GamesLibrary
+      <GameLibrary
         data={sortedGames.length > 0 ? sortedGames : rouletteGames}
         isMobile={isMobile}
       />

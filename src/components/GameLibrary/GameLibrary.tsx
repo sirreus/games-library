@@ -13,18 +13,18 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { Box, Grid } from "@mui/material";
 
 import GameCard from "../GameCard";
-import GameCardExpand from "../GameCardExpand";
+import GameCardPopup from "../GameCardPopup";
 
 import gamesData from "../../constants/gamesData";
 
 import "./styles.scss";
 
-interface IGamesLibrary {
+interface IGameLibrary {
   data: IGame[];
   isMobile: boolean;
 }
 
-export const GamesLibrary: React.FC<IGamesLibrary> = ({ data, isMobile }) => {
+export const GameLibrary: React.FC<IGameLibrary> = ({ data, isMobile }) => {
   const dispatch = useDispatch();
   const { width } = useWindowDimensions();
 
@@ -92,7 +92,7 @@ export const GamesLibrary: React.FC<IGamesLibrary> = ({ data, isMobile }) => {
         ))}
       </Grid>
 
-      <GameCardExpand
+      <GameCardPopup
         open={open}
         data={showGame}
         onClose={() => handleShowModalDialog({ state: false })}

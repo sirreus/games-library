@@ -49,7 +49,7 @@ export const Header: React.FC<IHeader> = ({ isMobile }) => {
               component="div"
               color="gold"
             >
-              Welcome to Games Global store!
+              Welcome to GG store!
             </Typography>
             {isMoreSM && <EmojiSpinner />}
           </Stack>

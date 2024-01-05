@@ -18,14 +18,14 @@ import ActiveUsers from "./components/ActiveUsers";
 
 import "./styles.scss";
 
-interface IGameCardExpand {
+interface IGameCardPopup {
   open: boolean;
   data: any;
   onClose: () => void;
   isMobile: boolean;
 }
 
-export const GameCardExpand: React.FC<IGameCardExpand> = ({
+export const GameCardPopup: React.FC<IGameCardPopup> = ({
   open,
   data,
   onClose,
@@ -38,12 +38,13 @@ export const GameCardExpand: React.FC<IGameCardExpand> = ({
   const isLessSM = width < 480;
 
   return (
-    <Dialog open={open} className={isLessSM ? "card-big-mobile" : "card-big"}>
-      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-        {name}
-      </DialogTitle>
+    <Dialog
+      open={open}
+      className={isLessSM ? "card-popup-mobile" : "card-popup"}
+    >
+      <DialogTitle sx={{ m: 0, p: 2 }}>{name}</DialogTitle>
       <IconButton
-        className="card-big close-btn"
+        className="card-popup close-btn"
         aria-label="close"
         onClick={() => onClose()}
       >
