@@ -1,6 +1,10 @@
 @use "../../variables" as v;
 
 @mixin dialog($isMobile: false) {
+  .MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
   .MuiDialog-container {
     .MuiPaper-root {
       width: fit-content;

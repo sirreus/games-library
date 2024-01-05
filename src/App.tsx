@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 
 import { useMobile } from "./hooks/useMobile";
@@ -16,6 +16,8 @@ import Favorites from "./pages/Favorites";
 
 import { CssBaseline } from "@mui/material";
 
+import routes from "./constants/routes";
+
 import "./App.scss";
 
 function App() {
@@ -28,19 +30,29 @@ function App() {
       <Sidebar isMobile={isMobile} />
 
       <Routes>
-        <Route path="/" element={<MainPage isMobile={isMobile} />} />
-        <Route path="/favorites" element={<Favorites isMobile={isMobile} />} />
-        <Route path="/slots" element={<SlotsGames isMobile={isMobile} />} />
         <Route
-          path="/table-games/roulette"
+          path={"/" || "/games-library"}
+          element={<Navigate to={routes.home} />}
+        />
+        <Route path={routes.home} element={<MainPage isMobile={isMobile} />} />
+        <Route
+          path={routes.favorites}
+          element={<Favorites isMobile={isMobile} />}
+        />
+        <Route
+          path={routes.slotsGames}
+          element={<SlotsGames isMobile={isMobile} />}
+        />
+        <Route
+          path={routes.rouletteGames}
           element={<RouletteGames isMobile={isMobile} />}
         />
         <Route
-          path="/card-games/blackjack"
+          path={routes.blackjackGames}
           element={<BlackjackGames isMobile={isMobile} />}
         />
         <Route
-          path="/card-games/poker"
+          path={routes.pokerGames}
           element={<PokerGames isMobile={isMobile} />}
         />
       </Routes>

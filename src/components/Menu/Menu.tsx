@@ -8,6 +8,7 @@ import { List, Collapse } from "@mui/material";
 
 import MenuItemBasic from "../MenuItemBasic";
 import MenuItemCollapsed from "../MenuItemCollapsed";
+import routes from "../../constants/routes";
 
 export const Menu: React.FC = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ export const Menu: React.FC = () => {
   const goToSubCategoryGamePage = (category: string, subCategory: string) => {
     const formateCategory = category.replace(" ", "-").toLowerCase();
     const formateSubCategory = subCategory.toLowerCase();
-    navigate(`${formateCategory}/${formateSubCategory}`);
+    navigate(`${routes.home}/${formateCategory}/${formateSubCategory}`);
 
     dispatch(setSortedGames([]));
   };
@@ -58,8 +59,8 @@ export const Menu: React.FC = () => {
     <List>
       <MenuItemBasic
         text="Home"
-        isSelected={location.pathname === "/"}
-        onClick={() => goTo("/")}
+        isSelected={location.pathname === routes.home}
+        onClick={() => goTo(routes.home)}
       />
       <MenuItemCollapsed
         text="Game categories"
@@ -75,9 +76,12 @@ export const Menu: React.FC = () => {
                 <MenuItemBasic
                   text={category.name}
                   isSelected={
-                    location.pathname === `/${category.name.toLowerCase()}`
+                    location.pathname ===
+                    `${routes.home}/${category.name.toLowerCase()}`
                   }
-                  onClick={() => goTo(category.name.toLowerCase())}
+                  onClick={() =>
+                    goTo(`${routes.home}/${category.name.toLowerCase()}`)
+                  }
                   isNested
                   key={index}
                 />
@@ -128,9 +132,9 @@ export const Menu: React.FC = () => {
       </Collapse>
 
       <MenuItemBasic
-        isSelected={location.pathname === "/favorites"}
+        isSelected={location.pathname === routes.favorites}
         text="Favorites"
-        onClick={() => goTo("/favorites")}
+        onClick={() => goTo(routes.favorites)}
       />
     </List>
   );
